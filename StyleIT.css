@@ -6,7 +6,6 @@ html {
 .straight-line {
     border-top: 3px solid;
     color: #ffd700;
-    margin-left:250px;
   }
   .straight-line2 {
     border-top: 3px solid;
@@ -33,7 +32,6 @@ section {
 
 h1, h2, h3 {
     font-family: 'Red Hat Display', roboto;
-    padding-left:250px;
     color:#2E2E2E;
 }
 
@@ -218,8 +216,11 @@ nav {
 #development-img2 {
     width:50%;
     text-align: left;
+}
+#development-img20
+ img {
     height:220px;
-    padding-top: 90px;
+    padding-top: 80px;
 }
 #delivery {
     background-color: #f6f6f6
