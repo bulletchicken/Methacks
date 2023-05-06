@@ -210,17 +210,16 @@ nav {
 
 #development-img img {
     height:220px;
-    padding-top: 80px;
+    padding-top: 10px;
 }
 
 #development-img2 {
     width:50%;
     text-align: left;
 }
-#development-img20
- img {
-    height:220px;
-    padding-top: 80px;
+#development-img2 img {
+    height:300px;
+    padding-top: -100px;
 }
 #delivery {
     background-color: #f6f6f6
