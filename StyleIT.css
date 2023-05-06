@@ -193,7 +193,7 @@ nav {
         border-radius: 30px;
         font-size: 17px;
         font-family: 'Red Hat Display';
-
+        margin-left: 60px;
         -webkit-transition: all .3s ease-in-out;
         transition: all .3s ease-in-out;
     }
