@@ -20,6 +20,8 @@ html {
 
 .mainfont{
     font-family: 'Red Hat Display';
+    display: inline-block;
+    margin-left: 900px;
 }
 
 .cursivefont{
