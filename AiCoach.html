@@ -1,5 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="AiCoach.css">
-<h1>Hello</h1>
+  <head>
+    <title>Multiple object detection using pre trained model in TensorFlow.js</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Jason Mayes">
+
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+  </head>  
+  <body> 
+      <div id="liveView" class="videoView">
+        <button id="webcamButton">Enable Webcam</button>
+        <video id="webcam" autoplay></video>
+      </div>
+
+      <div id = "big">
+          <div class="container">
+
+            <button class="btn record">
+              <div class="icon">
+                <ion-icon name="mic-outline"></ion-icon>
+                <img src="bars.svg" alt="" />
+              </div>
+              <p id="mode">Start Listening</p>
+            </button>
+            <p class="heading">Detected Speech:</p>
+            <div
+              class="result"
+              spellcheck="false"
+              placeholder="Text will be shown here"
+            >
+              <p class="interim"></p>
+            </div>
+          </div>
+    
+          <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+      </div>
+    
+    <!-- Import TensorFlow.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0/dist/tf.min.js" type="text/javascript"></script>
+    
+    <!-- Load the coco-ssd model to use to recognize things in images -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    
+    <!-- Import the page's JavaScript to do some stuff -->
+    <script src="webcam.js"></script>
+    <script src="languages.js"></script>
+
+
+
+  </body>
 </html>
