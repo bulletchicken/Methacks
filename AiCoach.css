@@ -1,4 +1,4 @@
-/*Designed by CodingTuting.Com*/
+
 html {
     scroll-behavior: smooth;
 }
@@ -8,6 +8,37 @@ html {
     
 
 }
+
+.heading {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color:#eaeaea;
+    background-color: #43A1D5;
+    width:50%;
+    margin-left:50%;
+    text-align: center;
+  }
+
+.result {
+    margin-left:50%;
+    margin-right:10%;
+    width: 50%;
+    min-height: 200px;
+    padding: 10px;
+    border: 1px solid var(--light-text-color);
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    background-color: #141414;
+    color: rgb(226, 223, 223);
+  }
+  .result p {
+    display: inline;
+    margin-left: 3px;
+    color: var(--light-text-color);
+  }
 #video-background {
     position: fixed;
     right: 0;
@@ -114,8 +145,29 @@ nav {
     align-items: center;
 }
 
-#homeButt{
+#webcamButton{
+    width: 140px;
+    height: 45px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
 }
+.button:hover {
+    background-color: #2EE59D;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+  }
 #wrapper{
     z-index: -1;
 }
