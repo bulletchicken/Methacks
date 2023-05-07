@@ -60,6 +60,7 @@ let distance = [];
 let flag = false;
 let secondsPassed = 0;
 let passy = 0;
+let velocity = 0;
 
 function predictWebcam() {
     // Now let's start classifying the stream.
@@ -74,14 +75,15 @@ function predictWebcam() {
         // they have a high confidence score.
         boundingBoxes = []
         indexs = []
+        
         for (let n = 0; n < predictions.length; n++) {
             // If we are over 66% sure we are sure we classified it right, draw it!
 
-            if (((predictions[n].score > 0.66) && (predictions[0].class == "person")) || ((predictions[n].score > 0) && (predictions[0].class == "sports ball"))) {
+            if (((predictions[n].score > 0.66) && (predictions[n].class == "person")) || ((predictions[n].score > 0) && (predictions[n].class == "sports ball"))) {
                 const p = document.createElement('p');
                 p.innerText = predictions[n].class + ' - with '
                     + Math.round(parseFloat(predictions[n].score) * 100)
-                    + '% confidence.';
+                    + '% confidence ' + velocity + "cm/s";
                 // Draw in top left of bounding box outline.
                 p.style = 'left: ' + predictions[n].bbox[0] + 'px;' +
                     'top: ' + predictions[n].bbox[1] + 'px;' +
@@ -89,15 +91,21 @@ function predictWebcam() {
 
                 // Draw the actual bounding box.
 
-                if (predictions.class == "person") {
+                if (predictions[n].class == "person") {
+                    console.log("hit");
                     let index = predictions[n].bbox[2]; //the lower the height (closer to the top), the closer it is since it is "taller"
                     //so smaller height = smaller index.
                     let fromLeft = predictions[n].bbox[0];
                     let fromRight = fromLeft + predictions[n].bbox[2] - 10;
                     let dimensions = [fromLeft, fromRight];
+                    console.log(index);
                     indexs.push(index);
                     boundingBoxes.push(dimensions);
-                } else {
+                } 
+                
+                else if(predictions[n].class == "sports ball"){
+                    const p = document.createElement('p');
+                    p.innerText = "hey"
                     //if reads soccer ball
                     const temp = setInterval(() => {
                         passy++;
@@ -110,25 +118,32 @@ function predictWebcam() {
                             let coords = undefined;
                             if (predictions[n] != undefined && predictions[n].bbox != undefined) {
 
+                                //x y
                                 coords = [predictions[n].bbox[0], predictions[n].bbox[1]];
                             }
-                            console.log(distance.length);
                             if (distance.length != 0 && distance.length != 1) {
                                 distance.push(coords);
                                 distance.shift();
-                                console.log(coords);
+
+                                // 0 0 is initial x
+
+                                //console.log("distance[0][0]" + distance[0][0]);
                                 const displacementX = distance[0][0] - distance[1][0];
-                                const displacementY = distance[1][0] - distance[1][1];
+                                const displacementY = distance[0][1] - distance[1][1];
                                 const displacementXY = Math.sqrt((displacementX * displacementX) + (displacementY * displacementY));
 
-                                const velocity = displacementXY / 5; //5 seconds
+                                velocity = (displacementXY / 50).toFixed(3); //5 seconds
 
-                                //x and y
-                                console.log(displacementX);
-                                console.log(displacementY);
-                                console.log(velocity + "cm/s");
-
-
+                                p.innerText = (velocity + "cm/s");
+                                if (velocity>10 && !passy > 0) {
+                                    const temp = setInterval(() => {
+                                        if (passy == 50) {
+                                            passy = 0;
+                                            clearInterval(temp);
+                                        }
+                                    }, 5);
+                                    runCheck();
+                                }
 
                             }
                             else {
@@ -177,6 +192,8 @@ function predictWebcam() {
 function runCheck() {
     //look for indexes of the objects and pick the 1st and 2nd largest
     //check if their coresponding bounding boxes at their given index overlaps
+    console.log("Indexes" + indexs);
+    console.log("boundingBoxes" + boundingBoxes);
     const synth = window.speechSynthesis
 
     let max1 = indexs[0];
@@ -184,12 +201,9 @@ function runCheck() {
     let max2 = indexs[1];
     let maxBounds2 = boundingBoxes[1];
 
-    console.log("First Checkpoint");
-
     if (max2 > max1) {
         [max1, max2] = [max2, max1];
     }
-    console.log("Second Checkpoint");
 
     for (let i = 2; i < indexs.length; i++) {
         const num = indexs[i];
@@ -205,20 +219,13 @@ function runCheck() {
             maxBounds2 = boundingBoxes[i];
         }
     }
-    console.log("Third Checkpoint");
 
     //check the two boxes for overlap
 
 
     //check if the defender is more to the right
     //in this case, max2 (behind) will be the bounds and then check with the left side of maxBounds1
-
-    if (maxBounds2 == undefined || maxBounds2[0] == undefined || maxBounds2[1] == undefined) {
-        let ourText = "you should pass"
-        const utterThis = new SpeechSynthesisUtterance(ourText)
-        synth.speak(utterThis)
-    }
-    else if (maxBounds1[0] == undefined || maxBounds1[1] == undefined) {
+    if (maxBounds2 == undefined || (maxBounds2[0] == undefined && maxBounds2[1] == undefined)) {
         let ourText = "you should pass"
         const utterThis = new SpeechSynthesisUtterance(ourText)
         synth.speak(utterThis)
@@ -227,7 +234,7 @@ function runCheck() {
     else if (maxBounds1[0] > maxBounds2[0] && maxBounds1[0] < maxBounds2[1]) {
         //cut left
 
-        let ourText = "Don't pass, cut right"
+        let ourText = "Don't pass, cut left"
         const utterThis = new SpeechSynthesisUtterance(ourText)
         synth.speak(utterThis)
     }
@@ -239,7 +246,7 @@ function runCheck() {
     else if (maxBounds1[1] > maxBounds1[0] && maxBounds1[1] < maxBounds2[1]) {
         //cut right
 
-        let ourText = "Don't pass, cut left"
+        let ourText = "Don't pass, cut right"
         const utterThis = new SpeechSynthesisUtterance(ourText)
         synth.speak(utterThis)
     }
@@ -276,6 +283,7 @@ function speechToText() {
             lastsentence = speechResult.split(".").pop();
 
             //to solve the repeating error
+            console.log(pass);
             if (lastsentence.includes("open") && !pass > 0) {
                 const temp = setInterval(() => {
                     pass++;
