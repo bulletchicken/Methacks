@@ -6,8 +6,17 @@ html {
 #logodesign {
     max-width: 6%;
     
-}
 
+}
+#video-background {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -3;
+  }
+  
 .straight-line {
     border-top: 3px solid;
     color: #ffd700;
@@ -39,7 +48,7 @@ section {
 
 h1, h2, h3 {
     font-family: 'Red Hat Display', roboto;
-    color:#2E2E2E;
+    color:#fff;
 }
 
 .col-5 {
@@ -74,13 +83,14 @@ p {
 #topHeader {
     padding: 1em 4em;    
     font-family: roboto;
+    z-index: 100;
 }
 
 #topInfo {
     padding: 0;
     margin-top: 10px;
     text-align: right;
-    color:#2E2E2E
+    color:#2E2E2E;
 }
 
     #topInfo li {
@@ -93,7 +103,7 @@ p {
     }
 
 .logo {
-    color: #ef4b42;
+    color: #43A1D5;
     font-size: 28px;
     font-family: roboto;
 }
@@ -105,7 +115,23 @@ nav {
 }
 
 #homeButt{
-    margin
+}
+#wrapper{
+    z-index: -1;
+}
+
+#tint {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    mix-blend-mode: multiply;
+    z-index: -1;
+  }
+#wrapper{
+    z-index:-1;
 }
 
 #camButt {
@@ -122,7 +148,7 @@ nav {
     font-size: 20px;
     text-decoration: none;
     font-weight: 500;
-    color: #2E2E2E;
+    color: #ffff;
     position: relative;
 
     -webkit-transition: all .3s ease-in-out;
@@ -130,7 +156,7 @@ nav {
 }
 
 .mainMenu a:hover, .mainMenu a:focus {
-    color: #ef4b42;
+    color: #43A1D5;
 }
 
 .mainMenu a:not(:last-child):hover:after,
@@ -147,7 +173,7 @@ nav {
     left: 50%;
     position: absolute;
     width: 0;
-    background: #ef4b42;
+    background: #43A1D5;
 
     -webkit-transition: width 0.3s ease 0s, left 0.3s ease 0s;
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
@@ -158,17 +184,17 @@ nav {
 }
 
 .mainMenu a:last-child {
-    border: 2px solid #ef4b42;
+    border: 2px solid #43A1D5;
     padding: 8px 16px !important;
     font-size: 17px;
     border-radius: 20px;
     text-align: center;
-    color: #ef4b42;
+    color:#43A1D5;
 }
 
 .mainMenu a:last-child:hover,
 .mainMenu a:last-child:focus {
-    background-color: #ef4b42;
+    background-color: #43A1D5;
     color: white;
 }
 
@@ -203,8 +229,8 @@ nav {
 
     .brand-btn {
         text-decoration: none;
-        background-color: #ef4b42;
-        border:2px solid #ef4b42;
+        background-color: #43A1D5;
+        border:2px solid #43A1D5;
         color: white;
         padding: 10px 40px;
         border-radius: 30px;
@@ -217,7 +243,7 @@ nav {
 
     .brand-btn:hover, .brand-btn:focus {
         background-color: transparent;
-        color: #ef4b42;
+        color: #43A1D5;
     }
 
 #development-img {
@@ -273,7 +299,7 @@ nav {
 
         #services ul li .fas, #services ul li .fab {
             font-size: 80px;
-            color:#ef4b42;
+            color:#43A1D5;
         }
 
         #services ul li div {
@@ -417,7 +443,7 @@ nav {
         }
 
 footer {
-    background-color: #ef4b42;
+    background-color: #43A1D5;
     padding: 3em 4em 2em;
 }
 
@@ -479,7 +505,7 @@ footer {
         input#subscriber-email {
             outline: none;
             padding: 8px;
-            background: #ff6962;
+            background: #43A1D5;
             border: 1px solid #fff;
             color: #fff;
             border-radius: 4px 0px 0px 4px;
@@ -516,7 +542,7 @@ footer {
         border-radius: 0px 4px 4px 0;
         padding: 8px 5px;
         background-color: #fff;
-        color: #ff6962;
+        color: #43A1D5;
         cursor:pointer;
     }
 
@@ -545,7 +571,7 @@ footer {
         }
 
         .social-links a:hover, .social-links a:focus {
-            background-color: #ff6962;
+            background-color: #43A1D5;
         }
 
             .social-links a i {
@@ -588,7 +614,7 @@ footer {
         bottom: 1.5em;
         right: 1.5em;
         padding: 10px;
-        background-color: #ff6962;
+        background-color: #43A1D5;
         border-radius: 5px;
 
         -webkit-box-shadow: 0px 5px 7px 0px rgba(0,0,0,0.75);
@@ -729,7 +755,7 @@ footer {
         position: absolute;
         top: 0;
         right: 0;
-        background-color: #ef4b42;
+        background-color: #43A1D5;
         width: 100%;
         padding: 1em 2em 2em;
         z-index: 1;
@@ -760,7 +786,7 @@ footer {
         }
         
         .mainMenu a:last-child {
-            background-color: #ff6962;
+            background-color: #43A1D5;
             color: #fff;
             border-color: #fff;
             width: 120px;
@@ -780,7 +806,7 @@ footer {
         }
 
         .mainMenu a.active:hover {
-            background-color: #ff6962;
+            background-color: #43A1D5;
         }
 
         .mainMenu a.active:first-child {
